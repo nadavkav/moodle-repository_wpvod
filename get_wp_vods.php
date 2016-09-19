@@ -2,7 +2,7 @@
 
 //header('Content-Type: text/plain');
 
-$url = 'http://davidsonvod.weizmann.ac.il:8080/wordpress/wp-json/wp/v2/media';
+$url = 'http://vod.wordpress.ac.il/wp-json/wp/v2/media';
 $json = ws_get($url);
 
 foreach($json as $vod) {

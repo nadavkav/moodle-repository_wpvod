@@ -162,7 +162,7 @@ class repository_wpvod extends repository {
         $error = null;
 
         $params = array('action' => 'search', 'subject' => $keyword);
-        $wsurl = 'http://davidsonvod.weizmann.ac.il:8080/wordpress/wp-json/wp/v2/media';
+        $wsurl = 'http://vod.wordpress.ac.il/wp-json/wp/v2/media';
 
         list($context, $course, $cm) = get_context_info_array($this->context->id);
         $courseid = is_object($course) ? $course->id : SITEID;
@@ -200,14 +200,14 @@ class repository_wpvod extends repository {
                 // Get video thumb link.
                 // todo: combine this info into the original WS call. (save network traffic)
                 $json_thimblink = $this->ws_get($voditem['_links']['wp:featuredmedia'][0]['href']);
-                $thumblink = str_replace('http://davidsonvod.weizmann.ac.il/wordpress/wp-content/uploads',
-                    'https://davidsonvod.weizmann.ac.il/vod', $json_thimblink['guid']['rendered']);
+                $thumblink = str_replace('http://vod.wordpress.ac.il/wp-content/uploads',
+                    'http://vod.wordpress.ac.il/vod', $json_thimblink['guid']['rendered']);
                 $thumblink = str_replace('http://', 'https://', $json_thimblink['guid']['rendered']);
                 // Use direct thumbnail link.
                 //$thumblink = $json_thimblink['guid']['rendered'];
 
-                $videolink = str_replace('http://davidsonvod.weizmann.ac.il/wordpress/wp-content/uploads',
-                    'https://davidsonvod.weizmann.ac.il/vod', $voditem['guid']['rendered']);
+                $videolink = str_replace('http://vod.wordpress.ac.il/wp-content/uploads',
+                    'http://vod.wordpress.ac.il/vod', $voditem['guid']['rendered']);
 
                 $list[] = array(
                     //'shorttitle' => $voditem['title']['rendered'],
